@@ -6,15 +6,35 @@ option java_outer_classname = "KeyManagerGrpc";
 option objc_class_prefix = "HLW";
 
 package io.orange.pix;
+import "google/protobuf/timestamp.proto";
+
 
 service KeyManagerGrpcService {
-  rpc send (KeyManagerGrpcRequest) returns (KeyManagerGrpcReply) {}
+  rpc register(PixRequest) returns (PixResponse){}
 }
 
-message KeyManagerGrpcRequest {
-  string name = 1;
+enum AccountType{
+  CONTA_POUPANCA = 0;
+  CONTA_CORRENTE = 1;
 }
 
-message KeyManagerGrpcReply {
-  string message = 1;
+enum KeyType{
+  CPF = 0;
+  CEL_PHONE = 1;
+  EMAIL = 2;
+  RANDOM_KEY = 3;
+}
+
+message PixRequest{
+
+  string idClient = 1;
+  KeyType keyType = 2;
+  string keyPix = 3;
+  AccountType accounType = 4;
+
+}
+message PixResponse {
+  int64 pixId =1;
+  string pixKey = 2;
+  google.protobuf.Timestamp createdAt = 3;
 }
