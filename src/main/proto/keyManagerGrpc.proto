@@ -31,7 +31,6 @@ message PixRequest{
   KeyType keyType = 2;
   string keyPix = 3;
   AccountType accounType = 4;
-
 }
 message PixResponse {
   int64 pixId =1;
